@@ -1,135 +1,122 @@
-// Exemplo de lista de livros
+class Livro {
+  constructor(titulo, autor, descricao, imagem) {
+    this.titulo = titulo;
+    this.autor = autor;
+    this.descricao = descricao;
+    this.imagem = imagem;
+  }
+}
 
-const Biblioteca = {
-  // Objetos mock, objetos simulados ou simplesmente mock em desenvolvimento
-  // de software são objetos que simulam o comportamento de objetos reais
-  // de forma controlada. São normalmente criados para testar o
-  // comportamento de outros objetos.
-  livros: [
-    {
-      titulo: "César",
-      autor: "Alan Massie",
-      descricao: `
-        Júlio César é apresentado ao leitor narrando 
-        suas memórias como general e político romano, 
-        cujo nome original era Décimo Júnio Bruto Albino.`,
-      imagem:
-        "https://m.media-amazon.com/images/I/81dEu3U6sxS._AC_UF1000,1000_QL80_.jpg"
-    },
-    {
-      titulo: "1984",
-      autor: "George Orwell",
-      descricao: `
-        Publicado em 1949, o texto de Orwell nasceu destinado à polêmica. 
-        Traduzido em mais de sessenta países, virou minissérie, filmes, 
-        quadrinhos, mangás e até uma ópera.
-      `,
-      imagem:
-        "https://m.media-amazon.com/images/I/61t0bwt1s3L._AC_UF1000,1000_QL80_.jpg"
-    },
-    {
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J.K. Rowling",
-      descricao: `
-        Harry Potter é um garoto cujos pais, feiticeiros, foram assassinados por 
-        um poderosíssimo bruxo quando ele ainda era um bebê.
-      `,
-      imagem:
-        "https://m.media-amazon.com/images/I/61jgm6ooXzL._AC_UF1000,1000_QL80_.jpg"
-    },
-    {
-      titulo: "Sapiens: Uma breve história da humanidade",
-      autor: " Yuval Noah Harari",
-      descricao: `
-        O planeta Terra tem cerca de 4,5 bilhões de anos. Numa fração ínfima 
-        desse tempo, uma espécie entre incontáveis outras o dominou: nós, humanos.
-      `,
-      imagem:
-        "https://www.lpm.com.br/livros/imagens/sapiens_9788525438393_hd.jpg"
-    },
-    {
-      titulo: "O Filho de Netuno",
-      autor: "Rick Riordan",
-      descricao: `
-        Filho de Poseidon, o deus do mar, um belo dia Percy desperta sem 
-        memória e acaba em um acampamento de heróis que não reconhece.
-      `,
-      imagem:
-        "https://m.media-amazon.com/images/I/61HVJUOwUpL._AC_UF1000,1000_QL80_.jpg"
-    },
-    {
-      titulo: "Fedro: ou Do Belo",
-      autor: "Platão",
-      descricao: `
-        Fedro é um diálogo platônico que trata da investigação sobre a 
-        retórica e o amor.
-      `,
-      imagem:
-        "https://edipro.com.br/wp-content/uploads/2017/02/9788572835626.jpg"
+class Biblioteca {
+  constructor() {
+    this.livros = [];
+  }
+
+  // Adiciona um livro à biblioteca
+  adicionarLivro(livro) {
+    if (livro instanceof Livro) {
+      this.livros.push(livro);
+      this.exibirLivros(); // Atualiza a exibição após adicionar
+      console.log(`Livro "${livro.titulo}" adicionado com sucesso.`);
+    } else {
+      console.log("O item a ser adicionado deve ser uma instância da classe Livro.");
     }
-  ],
+  }
 
-  // Função para atualizar a interface com os dados do livro
+  // Remove um livro da biblioteca com base no título
+  removerLivro(titulo) {
+    const index = this.livros.findIndex(livro => livro.titulo === titulo);
+    if (index !== -1) {
+      this.livros.splice(index, 1);
+      this.exibirLivros(); // Atualiza a exibição após remover
+      console.log(`Livro "${titulo}" removido com sucesso.`);
+    } else {
+      console.log(`Livro "${titulo}" não encontrado.`);
+    }
+  }
+
+  // Exibe todos os livros na interface
   exibirLivros() {
     const div = document.getElementById("livroDiv");
     div.innerHTML = "";
-    const { livros } = Biblioteca;
 
-    for (let i = 0; i < livros.length; i++) {
+    this.livros.forEach(livro => {
       div.innerHTML += `
-    <div class="livro">
-      <img src="${livros[i].imagem}" alt="${livros[i].titulo}" />
-      <div>
-        <h2>${livros[i].titulo}</h2>
-        <h3>${livros[i].autor}</h3>
-        <p>${livros[i].descricao}</p>
-      </div>
-    <div>
-    `;
-    }
-  },
-
-  // Método para adicionar um novo livro
-  adicionarLivro() {
-    const titulo = document.getElementById("tituloInput").value;
-    const autor = document.getElementById("autorInput").value;
-    const descricao = document.getElementById("descricaoInput").value;
-    const imagem = document.getElementById("imagemInput").value;
-
-    if (!titulo || !autor || !descricao || !imagem) {
-      alert("Todos os dados precisam ser preenchidos");
-      return;
-    }
-
-    const novoLivro = {
-      titulo,
-      autor,
-      descricao,
-      imagem
-    };
-
-    this.livros.push(novoLivro);
-    this.exibirLivros(); // Atualiza a lista após adicionar
-  },
-
-  // Método para remover um livro
-  removerLivro() {
-    const titulo = document.getElementById("tituloRemoverInput").value;
-    const index = this.livros.findIndex((livro) => livro.titulo === titulo);
-    if (index !== -1) {
-      this.livros.splice(index, 1);
-      console.log(this.livros);
-    }
-    this.exibirLivros(); // Atualiza a lista após remover
+        <div class="livro">
+          <img src="${livro.imagem}" alt="${livro.titulo}" />
+          <div>
+            <h2>${livro.titulo}</h2>
+            <h3>${livro.autor}</h3>
+            <p>${livro.descricao}</p>
+          </div>
+        </div>
+      `;
+    });
   }
-};
+}
 
-document
-  .getElementById("adicionarLivroBtn")
-  .addEventListener("click", () => Biblioteca.adicionarLivro());
-document
-  .getElementById("removerLivroBtn")
-  .addEventListener("click", () => Biblioteca.removerLivro());
+const biblioteca = new Biblioteca();
 
-// Exemplo de como exibir o primeiro livro da lista
-Biblioteca.exibirLivros();
+// Adiciona livros à biblioteca
+biblioteca.adicionarLivro(new Livro(
+  "César",
+  "Alan Massie",
+  `Júlio César é apresentado ao leitor narrando suas memórias como general e político romano, cujo nome original era Décimo Júnio Bruto Albino.`,
+  "https://m.media-amazon.com/images/I/81dEu3U6sxS._AC_UF1000,1000_QL80_.jpg"
+));
+
+biblioteca.adicionarLivro(new Livro(
+  "1984",
+  "George Orwell",
+  `Publicado em 1949, o texto de Orwell nasceu destinado à polêmica. Traduzido em mais de sessenta países, virou minissérie, filmes, quadrinhos, mangás e até uma ópera.`,
+  "https://m.media-amazon.com/images/I/61t0bwt1s3L._AC_UF1000,1000_QL80_.jpg"
+));
+
+biblioteca.adicionarLivro(new Livro(
+  "Harry Potter e a Pedra Filosofal",
+  "J.K. Rowling",
+  `Harry Potter é um garoto cujos pais, feiticeiros, foram assassinados por um poderosíssimo bruxo quando ele ainda era um bebê.`,
+  "https://m.media-amazon.com/images/I/61jgm6ooXzL._AC_UF1000,1000_QL80_.jpg"
+));
+
+biblioteca.adicionarLivro(new Livro(
+  "Sapiens: Uma breve história da humanidade",
+  "Yuval Noah Harari",
+  `O planeta Terra tem cerca de 4,5 bilhões de anos. Numa fração ínfima desse tempo, uma espécie entre incontáveis outras o dominou: nós, humanos.`,
+  "https://www.lpm.com.br/livros/imagens/sapiens_9788525438393_hd.jpg"
+));
+
+biblioteca.adicionarLivro(new Livro(
+  "O Filho de Netuno",
+  "Rick Riordan",
+  `Filho de Poseidon, o deus do mar, um belo dia Percy desperta sem memória e acaba em um acampamento de heróis que não reconhece.`,
+  "https://m.media-amazon.com/images/I/61HVJUOwUpL._AC_UF1000,1000_QL80_.jpg"
+));
+
+biblioteca.adicionarLivro(new Livro(
+  "Fedro: ou Do Belo",
+  "Platão",
+  `Fedro é um diálogo platônico que trata da investigação sobre a retórica e o amor.`,
+  "https://edipro.com.br/wp-content/uploads/2017/02/9788572835626.jpg"
+));
+
+// Atualiza a interface com os livros iniciais
+biblioteca.exibirLivros();
+
+// Adiciona evento para adicionar livro
+document.getElementById("adicionarLivroBtn").addEventListener("click", () => {
+  const titulo = document.getElementById("tituloInput").value;
+  const autor = document.getElementById("autorInput").value;
+  const descricao = document.getElementById("descricaoInput").value;
+  const imagem = document.getElementById("imagemInput").value;
+  
+  const novoLivro = new Livro(titulo, autor, descricao, imagem);
+  biblioteca.adicionarLivro(novoLivro);
+});
+
+// Adiciona evento para remover livro
+document.getElementById("removerLivroBtn").addEventListener("click", () => {
+  const titulo = document.getElementById("tituloRemoverInput").value;
+  biblioteca.removerLivro(titulo);
+});
+
