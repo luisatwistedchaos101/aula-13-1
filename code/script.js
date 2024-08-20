@@ -13,7 +13,8 @@ const Biblioteca = {
         Júlio César é apresentado ao leitor narrando 
         suas memórias como general e político romano, 
         cujo nome original era Décimo Júnio Bruto Albino.`,
-      imagem: "images/cesar.jpg"
+      imagem:
+        "https://m.media-amazon.com/images/I/81dEu3U6sxS._AC_UF1000,1000_QL80_.jpg"
     },
     {
       titulo: "1984",
@@ -23,7 +24,8 @@ const Biblioteca = {
         Traduzido em mais de sessenta países, virou minissérie, filmes, 
         quadrinhos, mangás e até uma ópera.
       `,
-      imagem: "images/1984.jpg"
+      imagem:
+        "https://m.media-amazon.com/images/I/61t0bwt1s3L._AC_UF1000,1000_QL80_.jpg"
     },
     {
       titulo: "Harry Potter e a Pedra Filosofal",
@@ -32,7 +34,8 @@ const Biblioteca = {
         Harry Potter é um garoto cujos pais, feiticeiros, foram assassinados por 
         um poderosíssimo bruxo quando ele ainda era um bebê.
       `,
-      imagem: "images/pedra-filosofal.jpg"
+      imagem:
+        "https://m.media-amazon.com/images/I/61jgm6ooXzL._AC_UF1000,1000_QL80_.jpg"
     },
     {
       titulo: "Sapiens: Uma breve história da humanidade",
@@ -41,7 +44,8 @@ const Biblioteca = {
         O planeta Terra tem cerca de 4,5 bilhões de anos. Numa fração ínfima 
         desse tempo, uma espécie entre incontáveis outras o dominou: nós, humanos.
       `,
-      imagem: "images/sapiens.jpg"
+      imagem:
+        "https://www.lpm.com.br/livros/imagens/sapiens_9788525438393_hd.jpg"
     },
     {
       titulo: "O Filho de Netuno",
@@ -50,7 +54,8 @@ const Biblioteca = {
         Filho de Poseidon, o deus do mar, um belo dia Percy desperta sem 
         memória e acaba em um acampamento de heróis que não reconhece.
       `,
-      imagem: "images/filho-de-netuno.jpg"
+      imagem:
+        "https://m.media-amazon.com/images/I/61HVJUOwUpL._AC_UF1000,1000_QL80_.jpg"
     },
     {
       titulo: "Fedro: ou Do Belo",
@@ -59,7 +64,8 @@ const Biblioteca = {
         Fedro é um diálogo platônico que trata da investigação sobre a 
         retórica e o amor.
       `,
-      imagem: "images/fedro.jpg"
+      imagem:
+        "https://edipro.com.br/wp-content/uploads/2017/02/9788572835626.jpg"
     }
   ],
 
@@ -91,7 +97,7 @@ const Biblioteca = {
     const imagem = document.getElementById("imagemInput").value;
 
     if (!titulo || !autor || !descricao || !imagem) {
-      alert("Todos os dados precisam ser preenchidos")
+      alert("Todos os dados precisam ser preenchidos");
       return;
     }
 
@@ -100,7 +106,7 @@ const Biblioteca = {
       autor,
       descricao,
       imagem
-    }
+    };
 
     this.livros.push(novoLivro);
     this.exibirLivros(); // Atualiza a lista após adicionar
@@ -115,7 +121,7 @@ const Biblioteca = {
       console.log(this.livros);
     }
     this.exibirLivros(); // Atualiza a lista após remover
-  },
+  }
 };
 
 document
