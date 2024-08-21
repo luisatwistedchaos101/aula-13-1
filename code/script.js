@@ -1,27 +1,19 @@
-class Livro {
+const Livro = {
   constructor(titulo, autor, descricao, imagem) {
     this.titulo = titulo;
     this.autor = autor;
     this.descricao = descricao;
     this.imagem = imagem;
-  }
-}
-
-class Biblioteca {
-  constructor() {
-    this.livros = [];
-  }
-
+  },
   // Adiciona um livro à biblioteca
-  adicionarLivro(livro) {}
+  adicionarLivro: function (livro) {},
 
   // Remove um livro da biblioteca com base no título
-  removerLivro(titulo) {}
+  removerLivro: function (titulo) {},
 
   // Exibe todos os livros na interface
-  exibirLivros() {}
-}
-
+  exibirLivros: function () {}
+};
 
 // Adiciona livros à biblioteca
 

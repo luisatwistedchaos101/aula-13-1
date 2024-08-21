@@ -1,12 +1,12 @@
-class ContaBancaria {
+const ContaBancaria = {
   constructor(titular, saldo) {
     this.titular = titular;
     this.saldo = saldo;
-  }
+  },
 
-  depositar(valor) {}
+  depositar: function (valor) {},
 
-  retirar(valor) {}
+  retirar: function (valor) {},
 
-  consultarSaldo() {}
-}
+  consultarSaldo: function () {}
+};
